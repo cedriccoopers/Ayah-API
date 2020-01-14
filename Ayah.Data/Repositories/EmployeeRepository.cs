@@ -13,7 +13,7 @@ namespace Ayah.Data.Repositories
             : base(context)
         { }
 
-        public async Task<IEnumerable<Gender>> GetAllWithGenderAsync()
+        public async Task<IEnumerable<Employee>> GetAllWithGenderAsync()
         {
             return await AyahDbContext.Gender
                 .Include(m => m.Gender)
@@ -22,16 +22,16 @@ namespace Ayah.Data.Repositories
 
         public async Task<Employee> GetWithTownByIdAsync(int id)
         {
-            return await AyahDbContext.Musics
-                .Include(m => m.Artist)
+            return await AyahDbContext.Town
+                .Include(m => m.Town)
                 .SingleOrDefaultAsync(m => m.Id == id); ;
         }
 
-        public async Task<IEnumerable<Music>> GetAllWithArtistByArtistIdAsync(int artistId)
+        public async Task<IEnumerable<Employee>> GetAllWithNationalityByNationalityIdAsync(int artistId)
         {
-            return await AyahDbContext.Musics
-                .Include(m => m.Artist)
-                .Where(m => m.ArtistId == artistId)
+            return await AyahDbContext.Nationality
+                .Include(m => m.Nationality)
+                .Where(m => m.Id == Id)
                 .ToListAsync();
         }
 
